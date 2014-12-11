@@ -4,6 +4,9 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
+/*Author
+ @chayuso
+ */
 package edu.wpi.first.wpilibj.templates;
 
 import edu.team597.BallManipulator;
