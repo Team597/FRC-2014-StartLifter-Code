@@ -36,7 +36,7 @@ public class BallManipulator {
 
     Talon motorIntakeRoller;
     Talon motorArm;
-    long lastPrint = 0;
+    long lastPrint = System.currentTimeMillis();
     XboxController xBoxController;
     DoubleSolenoid solenoidMouth;
     Encoder encoderArm;
@@ -86,7 +86,7 @@ public class BallManipulator {
     public void Periodic() {
         autonomousState = 1;
 
-        if (System.currentTimeMillis() > lastPrint) {
+        if (System.currentTimeMillis() >= lastPrint) {
             System.out.println(System.currentTimeMillis());
             System.out.println("==========================");
             System.out.println("!@#$%^&*()_+!@#$%^&*()_+!@#$%^&*()_+!@#$%^&*()_");
@@ -107,7 +107,7 @@ public class BallManipulator {
             System.out.println("BallSet1:" + diBallSettle1.get());
             //System.out.println("BallSet2:" + diBallSettle2.get());
             System.out.println("Manipulator state: " + manipulatorState);
-            lastPrint = lastPrint + 1000;
+            lastPrint += 1000;
         }
 
         //Arm motor Speed Value
