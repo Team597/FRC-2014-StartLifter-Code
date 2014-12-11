@@ -39,7 +39,7 @@ public class Drive {
     Relay driveLEDLightChannel2;
     DigitalInput diBallSettle;
 
-    float lastPrint = 0;
+    long lastPrint = System.currentTimeMillis();
 
     int driveState = DriveStateMachine.OPERATOR_CTRL;
     double motorSpeedSetValueLeft = 0;
@@ -77,12 +77,12 @@ public class Drive {
     public void Periodic() {
         autonomousShifterState = 1;
 
-        if (System.currentTimeMillis() > lastPrint) {
+        if (System.currentTimeMillis() >= lastPrint) {
 
             System.out.println("!@#$%^&*()_+!@#$%^&*()_+!@#$%^&*()_+!@#$%^&*()_");
             System.out.println("SolenoidShifter:   " + shifterOnSetValue);
             System.out.println("!@#$%^&*()_+!@#$%^&*()_+!@#$%^&*()_+!@#$%^&*()_123456890-123456890");
-            lastPrint = lastPrint + 1000;
+            lastPrint += 1000;
         }
 
         //Main Drive State Machine
