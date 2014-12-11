@@ -33,7 +33,7 @@ public class Shooting {
     Talon motorWinch;
 
     DigitalInput diWinchRetractLimit;
-    long lastPrint = 0;
+    long lastPrint = System.currentTimeMillis();
 
     int shooterState = ShooterStateMachine.READY;
     int autonomousState = 1;
@@ -72,10 +72,10 @@ public class Shooting {
     public void Periodic() {
         autonomousState = 1;
 
-        if (System.currentTimeMillis() > lastPrint) {
+        if (System.currentTimeMillis() >= lastPrint) {
             System.out.println("WinchLimitSwitch:" + diWinchRetractLimit.get());
             System.out.println("==========================");
-            lastPrint = lastPrint + 2000;
+            lastPrint += 1000;
         }
 
         // Main Shooter State Machine
