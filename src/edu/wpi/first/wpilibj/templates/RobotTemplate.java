@@ -37,7 +37,7 @@ public class RobotTemplate extends IterativeRobot {
     Drive drive;
     Shooting shootingFunction;
     BallManipulator ballControl;
-    long lastPrint = 0;
+    long lastPrint = System.currentTimeMillis();
     int autonomousState = 1;
     int timerState = 1;
     Timer timerAutonomous;
@@ -89,11 +89,11 @@ public class RobotTemplate extends IterativeRobot {
      */
     public void autonomousPeriodic() {
 
-        if (System.currentTimeMillis() > lastPrint) {
+        if (System.currentTimeMillis() >= lastPrint) {
             //Prints out the Left and Right values for Cheesy Vision
             System.out.println("Current left: " + server.getLeftStatus() + ", current right: " + server.getRightStatus());
             System.out.println("Left count: " + server.getLeftCount() + ", right count: " + server.getRightCount() + ", total: " + server.getTotalCount() + "\n");
-            lastPrint = lastPrint + 1000;
+            lastPrint += 1000;
         }
         //Restarts the autonomous timer once and disables drive teleop
         if (timerState == 1) {
